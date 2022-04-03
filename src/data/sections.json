@@ -31,5 +31,38 @@
         "type": "text"
       }
     ]
+  },
+  {
+    "name": "session",
+    "title": "Session Management",
+    "path": "/session",
+    "props": {
+      "name": "",
+      "date": "",
+      "time": "",
+      "link": ""
+    },
+    "fields": [
+      {
+        "name": "name",
+        "title": "Name",
+        "type": "text"
+      },
+      {
+        "name": "date",
+        "title": "Date",
+        "type": "date"
+      },
+      {
+        "name": "time",
+        "title": "Time",
+        "type": "time"
+      },
+      {
+        "name": "link",
+        "title": "Link",
+        "type": "text"
+      }
+    ]
   }
 ]
