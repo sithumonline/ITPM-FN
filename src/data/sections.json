@@ -97,5 +97,38 @@
         "type": "text"
       }
     ]
+  },
+  {
+    "name": "material",
+    "title": "Material Management",
+    "path": "/material",
+    "props": {
+      "title": "",
+      "author": "",
+      "subject": "",
+      "grade": ""
+    },
+    "fields": [
+      {
+        "name": "title",
+        "title": "Title",
+        "type": "text"
+      },
+      {
+        "name": "author",
+        "title": "Author",
+        "type": "text"
+      },
+      {
+        "name": "subject",
+        "title": "Subject",
+        "type": "text"
+      },
+      {
+        "name": "grade",
+        "title": "Grade",
+        "type": "text"
+      }
+    ]
   }
 ]
