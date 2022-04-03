@@ -1,0 +1,7 @@
+.dark-calender::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.light-calender::-webkit-calendar-picker-indicator {
+    filter: invert(0);
+}
