@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { Note_API } from "../../api/note";
 import "./one.css";
 import papa from "papaparse";
+import joi from "joi";
 
 const One = (props) => {
   localStorage.setItem("basePath", props.data.name);
@@ -30,6 +31,15 @@ const One = (props) => {
   });
 
   const [tData, setTData] = useState([]);
+
+  const schema = {
+    id: joi.number().required(),
+  };
+  props.data.fields.forEach((field) => {
+    schema[field.name] = eval(field.joi);
+  });
+
+  const joiSchema = joi.object(schema);
 
   const updateForm = (e) => {
     e.preventDefault();
@@ -134,6 +144,14 @@ const One = (props) => {
                   [field.name]: form[field.name],
                 };
               });
+              const { error } = joiSchema.validate({
+                ...f.reduce((acc, cur) => ({ ...acc, ...cur }), {}),
+                id: form.id,
+              });
+              if (error) {
+                alert(error.message);
+                return;
+              }
               if (form.isUpdate) {
                 handleUpdate.mutate({
                   id: form.id,
