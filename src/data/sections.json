@@ -13,22 +13,26 @@
       {
         "name": "name",
         "title": "Name",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string()"
       },
       {
         "name": "dob",
         "title": "Date of Birth",
-        "type": "date"
+        "type": "date",
+        "joi": "joi.date()"
       },
       {
         "name": "address",
         "title": "Address",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string()"
       },
       {
         "name": "phone",
         "title": "Phone",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.number()"
       }
     ]
   },
