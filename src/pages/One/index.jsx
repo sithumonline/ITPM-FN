@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { Note_API } from "../../api/note";
 import "./one.css";
+import papa from "papaparse";
 
 const One = (props) => {
   localStorage.setItem("basePath", props.data.name);
@@ -82,6 +83,26 @@ const One = (props) => {
     }
   }, [isSuccess, data]);
 
+  const handleDownload = () => {
+    const data = tData.map((item) => {
+      Object.keys(item).forEach((key) => {
+        if (key === "author") {
+          item["link"] = item[key];
+        }
+        item[key.charAt(0).toUpperCase() + key.slice(1)] = item[key];
+        delete item[key];
+      });
+      return item;
+    });
+    const csv = papa.unparse(data);
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "horizons.csv";
+    a.click();
+  };
+
   return (
     <div>
       <div className="p-8 sm:p-16 flex flex-col justify-start dark:text-white">
@@ -152,6 +173,13 @@ const One = (props) => {
             }}
           >
             Search
+          </button>
+          <button
+            className="dark:bg-white bg-black hover:bg-orange-500 dark:hover:bg-orange-500 dark:hover:text-white dark:text-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            onClick={handleDownload}
+          >
+            Download
           </button>
         </form>
       </div>
