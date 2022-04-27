@@ -50,22 +50,26 @@
       {
         "name": "name",
         "title": "Name",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string()"
       },
       {
         "name": "date",
         "title": "Date",
-        "type": "date"
+        "type": "date",
+        "joi": "joi.date()"
       },
       {
         "name": "time",
         "title": "Time",
-        "type": "time"
+        "type": "time",
+        "joi": "joi.string()"
       },
       {
         "name": "link",
         "title": "Link",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string().uri()"
       }
     ]
   },
