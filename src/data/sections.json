@@ -124,22 +124,26 @@
       {
         "name": "title",
         "title": "Title",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string()"
       },
       {
         "name": "author",
         "title": "Link",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string().uri()"
       },
       {
         "name": "subject",
         "title": "Subject",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.string()"
       },
       {
         "name": "grade",
         "title": "Grade",
-        "type": "text"
+        "type": "text",
+        "joi": "joi.number()"
       }
     ]
   }
