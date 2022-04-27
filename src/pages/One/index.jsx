@@ -23,9 +23,12 @@ const One = (props) => {
 
   const [form, setForm] = useState({
     id: "",
+    search: "",
     ...props.data.props,
     isUpdate: false,
   });
+
+  const [tData, setTData] = useState([]);
 
   const updateForm = (e) => {
     e.preventDefault();
@@ -52,7 +55,32 @@ const One = (props) => {
     },
   });
 
+  const updateSearch = (e) => {
+    e.preventDefault();
+    setForm({
+      ...form,
+      search: e.target.value,
+    });
+    if (e.target.value !== "") {
+      handleSearch.mutate(e.target.value);
+    } else {
+      queryClient.invalidateQueries(props.data.name);
+    }
+  };
+
+  const handleSearch = useMutation(Note_API.search, {
+    onSuccess: (data) => {
+      setTData(data);
+    },
+  });
+
   const { isSuccess, data } = useQuery(props.data.name, Note_API.getNotes);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTData(data);
+    }
+  }, [isSuccess, data]);
 
   return (
     <div>
@@ -111,12 +139,17 @@ const One = (props) => {
           <input
             className="appearance-none border rounded w-full py-2 px-3 text-black dark:text-white dark:bg-black bg-white leading-tight focus:outline-none focus:shadow-outline"
             name="search"
-            type="text"
-            placeholder="Search by name"
+            type={props.data.fields[0].type}
+            placeholder={`Search by ${props.data.fields[0].name}`}
+            onChange={updateSearch}
+            value={form["search"]}
           />
           <button
             className="dark:bg-white bg-black hover:bg-orange-500 dark:hover:bg-orange-500 dark:hover:text-white dark:text-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
+            onClick={() => {
+              handleSearch.mutate(form["search"]);
+            }}
           >
             Search
           </button>
@@ -138,7 +171,7 @@ const One = (props) => {
 
             <tbody>
               {isSuccess &&
-                data.map((note, index) => (
+                tData.map((note, index) => (
                   <Row
                     key={index}
                     data={note}

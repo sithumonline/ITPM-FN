@@ -52,3 +52,13 @@ export async function remove(id) {
     console.error(e);
   }
 }
+
+export async function search(text) {
+  try {
+    const res = await apiInstance.get(`${PATH}/search?name=${text}`);
+    const apiRes = res.data;
+    return apiRes;
+  } catch (e) {
+    console.error(e);
+  }
+}
