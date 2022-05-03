@@ -33,7 +33,7 @@ const One = (props) => {
   const [tData, setTData] = useState([]);
 
   const schema = {
-    id: joi.number().required(),
+    id: joi.any().optional(),
   };
   props.data.fields.forEach((field) => {
     schema[field.name] = eval(field.joi);
