@@ -1,5 +1,5 @@
 import { Card } from "../../component";
-import placeHolder from "../../assets/img/360.png";
+import placeHolder from "../../assets/img/100.png";
 import { sections } from "../../data";
 
 const Sections = () => {
