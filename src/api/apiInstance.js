@@ -13,7 +13,7 @@ addResponseInterceptor(apiInstance);
 
 apiInstance.interceptors.request.use(
   async function (config) {
-    config.baseURL = URL || "http://localhost:8080";
+    config.baseURL = URL || "http://localhost:8000";
     return config;
   },
   function (error) {
